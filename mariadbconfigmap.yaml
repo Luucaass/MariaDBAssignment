@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mariadb-config
+data:
+  my.cnf: |
+    [mysqld]
+    bind-address=0.0.0.0
+    binlog_format=ROW
+    wsrep_on=ON
+    wsrep_provider=/usr/lib/galera/libgalera_smm.so
+    wsrep_cluster_name: my_cluster
+    wsrep_cluster_address: gcomm://mariadb-node-0,mariadb-node-1,mariadb-node-2
+    wsrep_node_address: "mariadb-node-0"
+    wsrep_node_name: "mariadb-node-0"
